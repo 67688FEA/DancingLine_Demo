@@ -9,8 +9,8 @@ public class DancingLineController : MonoBehaviour {
     public GameObject head;
     private GameObject body;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
     }
 
     // Update is called once per frame
