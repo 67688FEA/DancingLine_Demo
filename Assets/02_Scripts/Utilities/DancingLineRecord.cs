@@ -18,11 +18,7 @@ public class DancingLineRecord : MonoBehaviour
 
     private List<DancingLineTransform> dancingLineTransformList;
     //private DancingLineTransform dancingLineTransform;
-
-    private void Awake()
-    {
-        dancingLineRecord = gameObject.scene.name;
-    }
+    
     // Use this for initialization
     void Start()
     {
