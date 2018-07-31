@@ -6,7 +6,9 @@ public class DancingLineController : MonoBehaviour {
 
     public bool start = false;
     public bool forward = false;
+    public AudioSource audioSource;
     public GameObject head;
+    public float speed = 0.1f;
     private GameObject body;
 
     // Use this for initialization
@@ -32,6 +34,7 @@ public class DancingLineController : MonoBehaviour {
             else
             {
                 start = true;
+                audioSource.Play();
             }
         }
         Dance();
@@ -45,11 +48,11 @@ public class DancingLineController : MonoBehaviour {
             body = Instantiate(body, head.transform.position, head.transform.rotation);
             if (forward)
             {
-                head.transform.position += new Vector3(0, 0, 0.1f);
+                head.transform.position += new Vector3(0, 0, speed);
             }
             else
             {
-                head.transform.position += new Vector3(0.1f, 0, 0);
+                head.transform.position += new Vector3(speed, 0, 0);
             }
         }
     }
