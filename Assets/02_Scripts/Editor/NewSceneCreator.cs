@@ -11,6 +11,7 @@ public class NewSceneCreator : EditorWindow
     public GameObject head;
     public AudioClip music;
     public string newSceneName;
+    private bool error = false;
 
     [MenuItem("DanceLine Tools/Create New Scene..", false, 0)]
     static void init()
@@ -60,6 +61,7 @@ public class NewSceneCreator : EditorWindow
         if (GUILayout.Button("Create", GUILayout.Width(60), GUILayout.Height(20)))
         {
             CheckAndCreateScene();
+            Close();
         }
 
         GUILayout.EndVertical();
@@ -72,7 +74,29 @@ public class NewSceneCreator : EditorWindow
     {
         if (EditorApplication.isPlaying)
         {
-            Debug.LogWarning("Cannot create scenes while in play mode.  Exit play mode first.");
+            Debug.LogError("Cannot create scenes while in play mode.  Exit play mode first.");
+            error = true;
+            return;
+        }
+
+        if (newSceneName == "")
+        {
+            Debug.LogError("The SceneName is null.  Please enter a name of the scene.");
+            error = true;
+            return;
+        }
+
+        if (!head)
+        {
+            Debug.LogError("The Head is null.  Please choose a head prefab.");
+            error = true;
+            return;
+        }
+
+        if (!music)
+        {
+            Debug.LogError("The Music is null.  Please enter a audio clip.");
+            error = true;
             return;
         }
 

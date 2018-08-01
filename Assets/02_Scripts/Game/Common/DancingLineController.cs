@@ -8,7 +8,8 @@ public class DancingLineController : MonoBehaviour {
     public bool forward = false;
     public AudioSource audioSource;
     public GameObject head;
-    public float speed = 0.1f;
+    public float speed;
+    public float InstantiationTimer;
     private GameObject body;
 
     // Use this for initialization
@@ -18,6 +19,7 @@ public class DancingLineController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        print(InstantiationTimer + "," + speed);
         if (Input.GetKeyDown("space"))
         {
             if (start)
@@ -44,15 +46,20 @@ public class DancingLineController : MonoBehaviour {
     {
         if (start)
         {
-            body = (GameObject)Resources.Load("Prefabs/Head");
-            body = Instantiate(body, head.transform.position, head.transform.rotation);
-            if (forward)
+            InstantiationTimer -= Time.deltaTime;
+            if (InstantiationTimer <= 0)
             {
-                head.transform.position += new Vector3(0, 0, speed);
-            }
-            else
-            {
-                head.transform.position += new Vector3(speed, 0, 0);
+                body = (GameObject)Resources.Load("Prefabs/Head");
+                body = Instantiate(body, head.transform.position, head.transform.rotation);
+                if (forward)
+                {
+                    head.transform.position += new Vector3(0, 0, 0.2f);
+                }
+                else
+                {
+                    head.transform.position += new Vector3(0.2f, 0, 0);
+                }
+                InstantiationTimer = speed;
             }
         }
     }

@@ -13,7 +13,7 @@ public class DancingLineRecord : MonoBehaviour
     public string dancingLineRecord;
     public AudioSource audioSource;
     public GameObject head;
-    public float speed = 0.1f;
+    public float speed = 0.08f;
     private GameObject body;
 
     private List<DancingLineTransform> dancingLineTransformList;
@@ -23,7 +23,7 @@ public class DancingLineRecord : MonoBehaviour
     void Start()
     {
         //dancingLineTransform = new DancingLineTransform();
-        dancingLineTransformList = new List<DancingLineTransform>();
+        dancingLineTransformList = new List<DancingLineTransform>(); 
     }
 
     // Update is called once per frame

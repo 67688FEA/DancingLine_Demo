@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/01_Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/__DELETED_GUID_Trash/103ab0d84dd16ff46927d34575db8ad6
+    path: 
     guid: 103ab0d84dd16ff46927d34575db8ad6
   - enabled: 1
-    path: Assets/__DELETED_GUID_Trash/5550103df75601044b67d306f7cb8b84
+    path: 
     guid: 5550103df75601044b67d306f7cb8b84
   - enabled: 1
     path: Assets/01_Scenes/Game Levels/Level1.unity
     guid: 74158479d5f6de947b06356343f54991
+  - enabled: 1
+    path: Assets/01_Scenes/Game Levels/LevelTest.unity
+    guid: 70b1844edf90e094485c930ef2c68e25
   m_configObjects: {}

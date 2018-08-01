@@ -11,6 +11,7 @@ public class LoadDancingLineRecord : EditorWindow
     public int index;
     public string[] options;
     public GameObject prefab;
+    private bool error = false;
 
     [MenuItem("DanceLine Tools/Load A Dance Route..", false, 1)]
     static void Init()
@@ -66,6 +67,8 @@ public class LoadDancingLineRecord : EditorWindow
         if (GUILayout.Button("Create", GUILayout.Width(60), GUILayout.Height(20)))
         {
             CreateDancingLine();
+            if(!error)
+                Close();
         }
 
         GUILayout.EndVertical();
@@ -79,11 +82,19 @@ public class LoadDancingLineRecord : EditorWindow
     {
         if (EditorApplication.isPlaying)
         {
-            Debug.LogWarning("Cannot load the dance route record while in play mode.  Exit play mode first.");
+            Debug.LogError("Cannot load the dance route record while in play mode.  Exit play mode first.");
+            error = true;
+            return;
+        }
+        if (!prefab)
+        {
+            Debug.LogError("The Head Prefab is null.  Please choose one.");
+            error = true;
             return;
         }
 
         GameObject instance = null;
+        GameObject danceRouteRecord = new GameObject("DanceRouteRecord");
         List<DancingLineTransform> dancingLineTransformList = new List<DancingLineTransform>();
         string path;
         string json = "";
@@ -96,7 +107,7 @@ public class LoadDancingLineRecord : EditorWindow
         {
             instance = Instantiate(prefab);
             instance.transform.position = new Vector3(float.Parse(jsonData[i]["x"].ToString()), float.Parse(jsonData[i]["y"].ToString()), float.Parse(jsonData[i]["z"].ToString()));
-            instance.transform.parent = FindObjectOfType<DancingLineRecord>().gameObject.transform;
+            instance.transform.parent = danceRouteRecord.transform;
         }
     }
 

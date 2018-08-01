@@ -114,52 +114,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &99395054
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 99395055}
-  - component: {fileID: 99395056}
-  m_Layer: 0
-  m_Name: DancingLine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &99395055
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 99395054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.79992, y: 0, z: 44.999886}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &99395056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 99395054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b0b6128915bbe41be702bbfa39b5ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  start: 0
-  forward: 0
-  dancingLineRecord: DancingLine_Temple
-  audioSource: {fileID: 1601580830}
-  head: {fileID: 0}
-  speed: 0.08
 --- !u!1 &271869206
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +572,7 @@ GameObject:
   - component: {fileID: 1632823251}
   - component: {fileID: 1632823250}
   - component: {fileID: 1632823249}
+  - component: {fileID: 1632823255}
   m_Layer: 0
   m_Name: DancingLine Camera
   m_TagString: MainCamera
@@ -716,6 +671,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 45, y: 30, z: 0}
+--- !u!114 &1632823255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632823248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b0b6128915bbe41be702bbfa39b5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: 0
+  forward: 0
+  dancingLineRecord: DancingLine_Temple
+  audioSource: {fileID: 1601580830}
+  head: {fileID: 0}
+  speed: 0.08
 --- !u!1001 &1949694498
 Prefab:
   m_ObjectHideFlags: 0
