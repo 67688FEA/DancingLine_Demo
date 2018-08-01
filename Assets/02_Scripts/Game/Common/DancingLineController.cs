@@ -9,17 +9,17 @@ public class DancingLineController : MonoBehaviour {
     public AudioSource audioSource;
     public GameObject head;
     public float speed;
-    public float InstantiationTimer;
+    private float InstantiationTimer;
     private GameObject body;
 
     // Use this for initialization
     void Start () {
+        InstantiationTimer = speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(InstantiationTimer + "," + speed);
         if (Input.GetKeyDown("space"))
         {
             if (start)
@@ -53,11 +53,11 @@ public class DancingLineController : MonoBehaviour {
                 body = Instantiate(body, head.transform.position, head.transform.rotation);
                 if (forward)
                 {
-                    head.transform.position += new Vector3(0, 0, 0.2f);
+                    head.transform.position += new Vector3(0, 0, 0.1f);
                 }
                 else
                 {
-                    head.transform.position += new Vector3(0.2f, 0, 0);
+                    head.transform.position += new Vector3(0.1f, 0, 0);
                 }
                 InstantiationTimer = speed;
             }
