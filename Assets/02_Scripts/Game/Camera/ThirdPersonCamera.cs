@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour {
 
     public Transform head;
-    public float smooth = 5f;
+    public float smooth = 10f;
     private Vector3 offset;
     private Vector3 targetPosition;
     public static bool visible = false;
@@ -35,13 +35,23 @@ public class ThirdPersonCamera : MonoBehaviour {
         //    transform.position = Vector3.Lerp(transform.position, targetPosition, smooth * Time.deltaTime);
         //    visible = true;
         //}
+        if (!IsVisibleOn3dCamera(head.gameObject, gameObject.GetComponent<Camera>()))
+        {
+            float distCovered = (Time.time - startTime) * smooth;
+            targetPosition = head.position + offset;
+            float fracJourney = distCovered / journeyLength;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, fracJourney);
+        }
 
-        //float distCovered = (Time.time - startTime) * smooth;
-        //targetPosition = head.position + offset;
-        //float fracJourney = distCovered / journeyLength;
-        //transform.position = Vector3.Lerp(head.position, targetPosition, fracJourney);
+        //transform.position = head.position + offset;
+    }
 
-        transform.position = head.position + offset;
+    bool IsVisibleOn3dCamera(GameObject obj, Camera camera)
+    {
+        Vector3 pos = camera.WorldToViewportPoint(obj.transform.position);
+        bool isVisible = (pos.y > 0.4f && pos.y < 0.6f);
+        print(isVisible);
+        return isVisible;
     }
 
     public void Move()
@@ -49,7 +59,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         float distCovered = (Time.time - startTime) * smooth;
         targetPosition = head.position + offset;
         float fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(head.position, targetPosition, fracJourney);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, fracJourney);
         //targetPosition = head.position + offset;
         //transform.position = Vector3.Lerp(transform.position, targetPosition, smooth * Time.deltaTime);
     }

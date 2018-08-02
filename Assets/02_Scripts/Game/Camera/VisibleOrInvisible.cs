@@ -8,7 +8,7 @@ public class VisibleOrInvisible : MonoBehaviour {
     public ThirdPersonCamera mainCamera;
     private Vector3 offset;
     private Vector3 targetPosition;
-    public float smooth = 20f;
+    public float smooth = 5f;
     void Start()
     {
         offset = transform.position - head.transform.position;

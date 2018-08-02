@@ -53,11 +53,11 @@ public class DancingLineController : MonoBehaviour {
                 body = Instantiate(body, head.transform.position, head.transform.rotation);
                 if (forward)
                 {
-                    head.transform.position += new Vector3(0, 0, 0.1f);
+                    head.transform.position += new Vector3(0, 0, 0.2f);
                 }
                 else
                 {
-                    head.transform.position += new Vector3(0.1f, 0, 0);
+                    head.transform.position += new Vector3(0.2f, 0, 0);
                 }
                 InstantiationTimer = speed;
             }
