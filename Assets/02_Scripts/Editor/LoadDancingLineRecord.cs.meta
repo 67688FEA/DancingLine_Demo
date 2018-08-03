@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - m_PersistentViewDataDictionary: {instanceID: 0}
-  - prefab: {instanceID: 0}
+  - prefab: {fileID: 1036041395527108, guid: 32e08eba99d158e448199941da5ce183, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

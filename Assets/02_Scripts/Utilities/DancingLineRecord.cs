@@ -9,12 +9,17 @@ public class DancingLineRecord : MonoBehaviour
 {
 
     public bool start = false;
-    public bool forward = false;
-    public string dancingLineRecord;
-    public AudioSource audioSource;
+    public static bool turn = false;
     public GameObject head;
-    public float speed = 0.08f;
-    private GameObject body;
+    public GameObject prefab;
+    public AudioSource audioSource;
+    public float speed;
+    public string RecordFileName;
+    public enum OperationMode { space, mouse };
+    public OperationMode operationMode = OperationMode.space;
+    private float distFromGround = 0.3f;
+    private Vector3 pos;
+    private int loopCount = 1;
 
     private List<DancingLineTransform> dancingLineTransformList;
     //private DancingLineTransform dancingLineTransform;
@@ -29,26 +34,53 @@ public class DancingLineRecord : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+
+        if (start)
         {
-            if (start)
+            pos = head.transform.position;
+
+            DancingLineTransform dancingLineTransform = new DancingLineTransform();
+            dancingLineTransform.SetPosition(pos.x, pos.y, pos.z);
+            dancingLineTransformList.Add(dancingLineTransform);
+
+            head.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            if (IsGrounded())
             {
-                if (forward)
+                Instantiate(prefab).transform.position = pos;
+                if (operationMode == OperationMode.space)
                 {
-                    forward = false;
+                    if (Input.GetKeyDown("space"))
+                    {
+                        Move();
+                    }
                 }
-                else
+                else if (operationMode == OperationMode.mouse)
                 {
-                    forward = true;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Move();
+                    }
                 }
-            }
-            else
-            {
-                start = true;
-                audioSource.Play();
             }
         }
-        Dance();
+        else
+        {
+            if (operationMode == OperationMode.space)
+            {
+                if (Input.GetKeyDown("space"))
+                {
+                    PlayMusic();
+                }
+            }
+            else if (operationMode == OperationMode.mouse)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    PlayMusic();
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             Save();
@@ -57,31 +89,50 @@ public class DancingLineRecord : MonoBehaviour
         }
     }
 
-    void Dance()
+    void Move()
     {
-        if (start)
+        if (turn == false)
         {
-            DancingLineTransform dancingLineTransform = new DancingLineTransform();
-            dancingLineTransform.SetPosition(head.transform.position.x, head.transform.position.y, head.transform.position.z);
-            dancingLineTransformList.Add(dancingLineTransform);
-            body = (GameObject)Resources.Load("Prefabs/Head");
-            body = Instantiate(body, head.transform.position, head.transform.rotation);
-            if (forward)
+            if (loopCount % 2 == 0)
             {
-                head.transform.position += new Vector3(0, 0, speed);
+                head.transform.eulerAngles = new Vector3(0, 90, 0);
             }
             else
             {
-                head.transform.position += new Vector3(speed, 0, 0);
+                head.transform.eulerAngles = new Vector3(0, 0, 0);
             }
+            loopCount++;
         }
+        else
+        {
+            if (loopCount % 2 == 0)
+            {
+                head.transform.eulerAngles = new Vector3(0, 90, 0);
+            }
+            else
+            {
+                head.transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            loopCount++;
+        }
+    }
+
+    void PlayMusic()
+    {
+        start = true;
+        audioSource.Play();
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(head.transform.position, Vector3.down, distFromGround);
     }
 
     void Save()
     {
         string path;
         string json;
-        path = Application.dataPath + "/DancingLineRecord/" + dancingLineRecord + ".json";
+        path = Application.dataPath + "/DancingLineRecord/" + RecordFileName + ".json";
         json = JsonMapper.ToJson(dancingLineTransformList);
         StreamWriter sw = new StreamWriter(path);
         sw.Write(json);

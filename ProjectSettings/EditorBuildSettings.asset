@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Game Levels/LevelTest.unity
     guid: 70b1844edf90e094485c930ef2c68e25
+  - enabled: 1
+    path: Assets/__DELETED_GUID_Trash/91454f83d287de945bb7845f7a0ba44f
+    guid: 91454f83d287de945bb7845f7a0ba44f
+  - enabled: 1
+    path: Assets/01_Scenes/Game Levels/EverlastingLove.unity
+    guid: 0866788e3ec2b0b49b231334eedd28fa
   m_configObjects: {}

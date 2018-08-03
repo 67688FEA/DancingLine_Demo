@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class NewSceneCreator : EditorWindow
 {
 
-    public GameObject head;
+    public Material playerMaterial;
     public AudioClip music;
     public string newSceneName;
     private bool error = false;
@@ -27,7 +27,7 @@ public class NewSceneCreator : EditorWindow
 
         GUILayout.BeginVertical();
         GUILayout.Label("SceneName");
-        GUILayout.Label("Head");
+        GUILayout.Label("Player Material");
         GUILayout.Label("Music");
         GUILayout.EndVertical();
 
@@ -35,7 +35,7 @@ public class NewSceneCreator : EditorWindow
 
         GUILayout.BeginVertical();
         newSceneName = EditorGUILayout.TextField(newSceneName);
-        head = (GameObject)EditorGUILayout.ObjectField(head, typeof(GameObject), true);
+        playerMaterial = (Material)EditorGUILayout.ObjectField(playerMaterial, typeof(Material), true);
         music = (AudioClip)EditorGUILayout.ObjectField(music, typeof(AudioClip), true);
 
         GUILayout.EndVertical();
@@ -86,9 +86,9 @@ public class NewSceneCreator : EditorWindow
             return;
         }
 
-        if (!head)
+        if (!playerMaterial)
         {
-            Debug.LogError("The Head is null.  Please choose a head prefab.");
+            Debug.LogError("The Player Material is null.  Please choose a player material.");
             error = true;
             return;
         }
@@ -143,13 +143,8 @@ public class NewSceneCreator : EditorWindow
 
     protected void InstantiatePrefab()
     {
-        GameObject instance = null;
-        instance = Instantiate(head);
         FindObjectOfType<AudioSource>().clip = music;
-        FindObjectOfType<ThirdPersonCamera>().head = instance.transform;
-        FindObjectOfType<DancingLineController>().head = instance;
-        FindObjectOfType<DancingLineRecord>().head = instance;
-        FindObjectOfType<DancingLineRecord>().dancingLineRecord = newSceneName+"_Route";
+        FindObjectOfType<DancingLineRecord>().RecordFileName = newSceneName+"_Route";
     }
 
     protected void AddSceneToBuildingSetting(Scene scene)

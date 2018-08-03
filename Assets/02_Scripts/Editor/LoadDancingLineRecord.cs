@@ -37,14 +37,14 @@ public class LoadDancingLineRecord : EditorWindow
         GUILayout.BeginHorizontal();
 
         GUILayout.BeginVertical();
-        GUILayout.Label("Head Prefab");
+        //GUILayout.Label("Head Prefab");
         GUILayout.Label("Dance Route");
         GUILayout.EndVertical();
 
         GUILayout.Space(20);
 
         GUILayout.BeginVertical();
-        prefab = (GameObject)EditorGUILayout.ObjectField(prefab, typeof(GameObject), true);
+        //prefab = (GameObject)EditorGUILayout.ObjectField(prefab, typeof(GameObject), true);
         index = EditorGUILayout.Popup(index, options);
 
         GUILayout.EndVertical();
@@ -88,7 +88,7 @@ public class LoadDancingLineRecord : EditorWindow
         }
         if (!prefab)
         {
-            Debug.LogError("The Head Prefab is null.  Please choose one.");
+            Debug.LogError("The Head Prefab is null.");
             error = true;
             return;
         }
