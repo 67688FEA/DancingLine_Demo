@@ -317,10 +317,10 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       mode: 0
-      color: {r: 0.7075472, g: 0.6097153, b: 0.3504361, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.45
       smoothness: 1
