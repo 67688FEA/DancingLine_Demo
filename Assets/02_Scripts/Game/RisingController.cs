@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RisingController : MonoBehaviour {
 
-    public Animator animator;
+    public Animator destination;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            animator.SetTrigger("Rise");
+            destination.SetTrigger("Rise");
         }
     }
 
